@@ -1,4 +1,6 @@
-package com.example.gameenc.domain.model
+package com.example.gameenc.data.remote.dto
+
+import com.example.gameenc.domain.model.MyGame
 
 data class Game(
     val added: Int,
@@ -31,3 +33,25 @@ data class Game(
     val updated: String,
     val user_game: Any
 )
+
+fun Game.toMyGame(): MyGame {
+    return MyGame(
+        background_image,
+        genres,
+        id,
+        name,
+        platforms.map { it.toMyPlatform() },
+        playtime,
+        rating,
+        rating_top,
+        ratings,
+        ratings_count,
+        released,
+        reviews_count,
+        reviews_text_count,
+        short_screenshots,
+        slug,
+        stores,
+        tags
+    )
+}

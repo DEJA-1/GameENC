@@ -1,4 +1,4 @@
-package com.example.gameenc.domain.model
+package com.example.gameenc.data.remote.dto
 
 data class StoreX(
     val domain: String,

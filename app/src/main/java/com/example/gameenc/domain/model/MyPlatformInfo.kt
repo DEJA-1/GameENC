@@ -1,7 +1,7 @@
 package com.example.gameenc.domain.model
 
-data class Platform(
+data class MyPlatformInfo(
     val id: Int,
     val name: String,
-    val slug: String
+    val slug: String,
 )

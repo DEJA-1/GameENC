@@ -1,4 +1,6 @@
-package com.example.gameenc.domain.model
+package com.example.gameenc.data.remote.dto
+
+import com.example.gameenc.domain.model.MyGameList
 
 data class GameList(
     val count: Int,
@@ -15,3 +17,9 @@ data class GameList(
     val seo_keywords: String,
     val seo_title: String
 )
+
+fun GameList.toMyGameList() : MyGameList {
+    return MyGameList(
+        results = results.map { it.toMyGame() }
+    )
+}
