@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.example.gameenc.common.AppColors
 import com.example.gameenc.navigation.Screen
 import com.example.gameenc.presentation.GameViewModel
 
@@ -32,7 +34,7 @@ fun HomeScreen(navController: NavHostController, viewModel: GameViewModel) {
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = "gameListUse.first().name",
+                    text = gameListUse.first().name,
                     style = MaterialTheme.typography.h1,
                     textAlign = TextAlign.Center
                 )
@@ -48,7 +50,12 @@ fun HomeScreen(navController: NavHostController, viewModel: GameViewModel) {
 
         }
     } else {
-        CircularProgressIndicator()
+        Box(modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center){
+
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center),
+            strokeWidth = 5.dp)
+        }
     }
 
 
