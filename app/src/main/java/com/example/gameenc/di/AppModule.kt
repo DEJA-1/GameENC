@@ -42,8 +42,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(
-        api: GameApi
-    ) = GameRepositoryImpl(api)
+    fun provideGameRepository(api: GameApi) = GameRepositoryImpl(api)
 
 }
