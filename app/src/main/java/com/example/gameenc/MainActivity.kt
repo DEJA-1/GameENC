@@ -8,8 +8,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gameenc.navigation.SetupNavGraph
+import com.example.gameenc.presentation.GameViewModel
 import com.example.gameenc.presentation.screen.home.HomeScreen
 import com.example.gameenc.ui.theme.GameENCTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,12 +24,13 @@ class MainActivity : ComponentActivity() {
             GameENCTheme {
 
                 val navController = rememberNavController()
+                val viewModel = hiltViewModel<GameViewModel>()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    SetupNavGraph(navController = navController)
+                    SetupNavGraph(navController = navController, viewModel = viewModel)
                 }
             }
         }

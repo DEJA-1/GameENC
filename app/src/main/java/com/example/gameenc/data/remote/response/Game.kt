@@ -1,4 +1,4 @@
-package com.example.gameenc.data.remote.dto
+package com.example.gameenc.data.remote.response
 
 import com.example.gameenc.domain.model.MyGame
 

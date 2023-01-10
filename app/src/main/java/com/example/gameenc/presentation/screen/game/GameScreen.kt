@@ -9,11 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gameenc.common.AppColors
+import com.example.gameenc.presentation.GameViewModel
 
 @Composable
-fun GameScreen(navController: NavController) {
+fun GameScreen(navController: NavController, viewModel: GameViewModel) {
+
+    val gameListUse = viewModel.gameList.value.results
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -23,7 +27,7 @@ fun GameScreen(navController: NavController) {
         Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
 
-            Text(text = "Game Screen",
+            Text(text = gameListUse.first().name,
             color = Color.White,
             style = MaterialTheme.typography.h1)
 

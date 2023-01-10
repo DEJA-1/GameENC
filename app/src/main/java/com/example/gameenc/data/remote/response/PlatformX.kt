@@ -1,4 +1,4 @@
-package com.example.gameenc.data.remote.dto
+package com.example.gameenc.data.remote.response
 
 import com.example.gameenc.domain.model.MyPlatform
 
@@ -6,7 +6,7 @@ import com.example.gameenc.domain.model.MyPlatform
 data class PlatformX(
     val platform: PlatformXX,
     val released_at: String,
-    val requirements_en: RequirementsEn,
+    val requirements_en: RequirementsEn?,
     val requirements_ru: RequirementsRu
 )
 

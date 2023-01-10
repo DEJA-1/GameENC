@@ -1,6 +1,6 @@
 package com.example.gameenc.domain.model
 
-import com.example.gameenc.data.remote.dto.*
+import com.example.gameenc.data.remote.response.*
 
 data class MyGame(
     val background_image: String,

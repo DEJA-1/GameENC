@@ -4,6 +4,7 @@ import com.example.gameenc.common.Constants
 import com.example.gameenc.common.Constants.BASE_URL
 import com.example.gameenc.data.remote.GameApi
 import com.example.gameenc.data.repository.GameRepositoryImpl
+import com.example.gameenc.domain.repository.GameRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,15 +34,15 @@ object AppModule {
             .build()
 
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create()
+            .create(GameApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideGameRepository(api: GameApi) = GameRepositoryImpl(api)
+    fun provideGameRepository(api: GameApi) : GameRepository = GameRepositoryImpl(api)
 
 }
