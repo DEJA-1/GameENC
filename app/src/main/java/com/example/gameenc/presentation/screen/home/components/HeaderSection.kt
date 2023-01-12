@@ -28,7 +28,7 @@ fun HeaderSection() {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(15.dp),
+            .padding(start = 15.dp, top = 15.dp, end = 15.dp),
     ) {
 
         Text(

@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import com.example.gameenc.common.AppColors
 import com.example.gameenc.presentation.screen.viewmodel.GameViewModel
 import com.example.gameenc.presentation.screen.game.components.ImageSection
-import com.example.gameenc.presentation.screen.game.components.InfoSection
+import com.example.gameenc.presentation.screen.game.components.info_section.InfoSection
 import com.example.gameenc.presentation.screen.game.components.ScreenshotSection
 
 @Composable
@@ -33,10 +33,10 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
             Divider(modifier = Modifier.fillMaxWidth(),
                 color = AppColors.mMain,
-                thickness = 3.dp)
+                thickness = 2.dp)
 
             ScreenshotSection(images = images)
-            InfoSection()
+            InfoSection(selectedGame = viewModel.selectedGame.value)
 
         }
 

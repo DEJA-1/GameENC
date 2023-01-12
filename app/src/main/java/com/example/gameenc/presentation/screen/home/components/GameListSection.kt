@@ -53,14 +53,13 @@ fun GameListSection(
             items(games) {
                 Card(modifier = Modifier
                     .fillMaxSize()
-                    .padding(8.dp)
+                    .padding(bottom = 8.dp)
                     .clickable {
                         selectedGame.value = it
                         onClick()
                     },
                     shape = RoundedCornerShape(12.dp),
-                    elevation = 4.dp,
-                    border = BorderStroke(2.dp, AppColors.mMain)) {
+                    elevation = 4.dp) {
 
                     Box(modifier = Modifier.clip(RoundedCornerShape(12.dp))) {
                         AsyncImage(model = ImageRequest.Builder(LocalContext.current)
