@@ -1,33 +1,42 @@
 package com.example.gameenc.presentation.screen.game
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.gameenc.common.AppColors
-import com.example.gameenc.presentation.GameViewModel
+import com.example.gameenc.presentation.screen.viewmodel.GameViewModel
+import com.example.gameenc.presentation.screen.game.components.ImageSection
+import com.example.gameenc.presentation.screen.game.components.InfoSection
+import com.example.gameenc.presentation.screen.game.components.ScreenshotSection
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = AppColors.mBackground
+    val images = viewModel.selectedGame.value.short_screenshots.toMutableList()
+    images.removeFirst()
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppColors.mBackground),
     ) {
 
-        Box(modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center) {
+        Column(modifier = Modifier.padding(bottom = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally) {
 
-            Text(text = viewModel.selectedGame.value.name,
-            color = Color.White,
-            style = MaterialTheme.typography.h1)
+            ImageSection(selectedGame = viewModel.selectedGame.value)
+
+            Divider(modifier = Modifier.fillMaxWidth(),
+                color = AppColors.mMain,
+                thickness = 3.dp)
+
+            ScreenshotSection(images = images)
+            InfoSection()
 
         }
 

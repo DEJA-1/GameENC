@@ -1,4 +1,4 @@
-package com.example.gameenc.presentation
+package com.example.gameenc.presentation.screen.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf

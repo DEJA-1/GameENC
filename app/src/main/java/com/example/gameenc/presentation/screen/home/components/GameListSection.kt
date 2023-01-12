@@ -39,7 +39,7 @@ fun GameListSection(
 ) {
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = CenterHorizontally) {
 
         Text(
             modifier = Modifier.padding(bottom = 15.dp, top = 32.dp),
