@@ -1,5 +1,6 @@
 package com.example.gameenc.presentation.screen.home.components
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,6 +13,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -28,11 +30,12 @@ import coil.request.ImageRequest
 import com.example.gameenc.common.AppColors
 import com.example.gameenc.domain.model.MyGame
 
-@Preview
 @Composable
 fun GameListSection(
-    tag: String = "RPG",
     games: List<MyGame> = emptyList(),
+    selectedCategory: MutableState<String>,
+    selectedGame: MutableState<MyGame>,
+    onClick: () -> Unit
 ) {
 
     Column(
@@ -40,43 +43,51 @@ fun GameListSection(
 
         Text(
             modifier = Modifier.padding(bottom = 15.dp, top = 32.dp),
-            text = tag.uppercase(),
+            text = selectedCategory.value,
             fontWeight = FontWeight.ExtraBold,
             fontStyle = FontStyle.Italic,
-            fontSize = 32.sp,
+            fontSize = 28.sp,
             color = AppColors.textWhite)
 
         LazyColumn() {
             items(games) {
                 Card(modifier = Modifier
                     .fillMaxSize()
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .clickable {
+                        selectedGame.value = it
+                        onClick()
+                    },
                     shape = RoundedCornerShape(12.dp),
                     elevation = 4.dp,
                     border = BorderStroke(2.dp, AppColors.mMain)) {
 
-                    AsyncImage(model = ImageRequest.Builder(LocalContext.current)
-                        .data(it.background_image)
-                        .crossfade(true)
-                        .build(),
-                        contentDescription = "Game Image")
+                    Box(modifier = Modifier.clip(RoundedCornerShape(12.dp))) {
+                        AsyncImage(model = ImageRequest.Builder(LocalContext.current)
+                            .data(it.background_image)
+                            .crossfade(true)
+                            .build(),
+                            contentDescription = "Game Image")
 
-                    Box(contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                            .padding(start = 35.dp, end = 35.dp)
-                            .background(AppColors.mMain)
-                            .border(2.dp, Color.Black, RoundedCornerShape(12.dp))) {
+                        Box(contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(AppColors.mMain)
+                                .clip(RoundedCornerShape(12.dp))
+//                                .padding(start = 32.dp, end = 32.dp, bottom = 15.dp)
 
-                        Text(
-                            text = it.name,
-                            fontWeight = FontWeight.ExtraBold,
-                            fontStyle = FontStyle.Italic,
-                            color = Color.Black,
-                            fontSize = 32.sp)
+//                                .border(width = 2.dp, color = AppColors.mMain, shape = RoundedCornerShape(4.dp))
+                                .padding(15.dp)
+                                .align(Alignment.BottomStart)) {
 
+                            Text(
+                                text = it.name,
+                                fontWeight = FontWeight.ExtraBold,
+                                fontStyle = FontStyle.Italic,
+                                color = Color.Black,
+                                fontSize = 14.sp)
+
+                        }
                     }
                 }
             }

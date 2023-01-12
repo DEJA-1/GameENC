@@ -17,8 +17,6 @@ import com.example.gameenc.presentation.GameViewModel
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
-    val gameListUse = viewModel.gameList.value.results.filter {it.tags.any {tag -> tag.name == "RPG"}}
-
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = AppColors.mBackground
@@ -27,7 +25,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
         Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
 
-            Text(text = gameListUse.random().name,
+            Text(text = viewModel.selectedGame.value.name,
             color = Color.White,
             style = MaterialTheme.typography.h1)
 

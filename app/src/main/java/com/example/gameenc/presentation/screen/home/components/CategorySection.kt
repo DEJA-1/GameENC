@@ -25,11 +25,9 @@ import com.example.gameenc.data.remote.response.Tag
 @Composable
 fun CategorySection(
     tags: List<Tag>,
+    selectedCategory: MutableState<String>,
+    selectedCategoryIndex: MutableState<Int>
 ) {
-
-    var selectedCategoryIndex by remember {
-        mutableStateOf(0)
-    }
 
     LazyRow {
         items(tags.size) {
@@ -38,11 +36,12 @@ fun CategorySection(
                     .padding(start = 15.dp, top = 15.dp, bottom = 15.dp)
                     .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(10.dp))
                     .clickable {
-                        selectedCategoryIndex = it
+                        selectedCategoryIndex.value = it
+                        selectedCategory.value = tags[it].name.uppercase()
                     }
                     .clip(RoundedCornerShape(10.dp))
                     .background(
-                        if (selectedCategoryIndex == it)
+                        if (selectedCategoryIndex.value == it)
                             AppColors.mMain
                         else
                             AppColors.mSecond
