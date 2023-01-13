@@ -10,6 +10,9 @@ import com.example.gameenc.domain.model.MyGame
 import com.example.gameenc.domain.model.MyGameList
 import com.example.gameenc.domain.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,10 +26,10 @@ class GameViewModel @Inject constructor(
     var errorMessage = mutableStateOf("")
     val selectedCategory = mutableStateOf("SINGLEPLAYER")
     val selectedCategoryIndex = mutableStateOf(0)
-    val selectedGame = mutableStateOf<MyGame>(MyGame("",
-        emptyList(),
-        0,
+    val selectedGame = mutableStateOf<MyGame>(MyGame(0,
         "",
+        "",
+        emptyList(),
         emptyList(),
         0,
         0.0,
@@ -40,10 +43,17 @@ class GameViewModel @Inject constructor(
         "",
         emptyList(),
         emptyList()))
+    private val _gameListFromDb = MutableStateFlow<List<MyGame>>(emptyList())
+    val gameListFromDb = _gameListFromDb.asStateFlow()
 
     init {
         getGames()
-        Log.d("TEST", gameList.value.toString())
+
+        viewModelScope.launch(Dispatchers.IO){
+            repository.getAllGamesFromDb().collect() {
+                _gameListFromDb.value = it
+            }
+        }
     }
 
     private fun getGames() {
@@ -69,5 +79,15 @@ class GameViewModel @Inject constructor(
             }
         }
     }
+
+    fun insertGameToDb(game: MyGame) = viewModelScope.launch {
+        repository.insertGameToDb(game)
+    }
+
+    fun deleteGameFromDb(game: MyGame) = viewModelScope.launch {
+        repository.deleteGameFromDb(game)
+    }
+
+
 
 }

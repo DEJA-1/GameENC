@@ -1,5 +1,6 @@
 package com.example.gameenc.presentation.screen.game.components
 
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
@@ -16,9 +17,15 @@ import coil.request.ImageRequest
 import com.example.gameenc.common.AppColors
 import com.example.gameenc.domain.model.MyGame
 import com.example.gameenc.presentation.screen.game.components.info_section.Chip
+import com.example.gameenc.presentation.screen.viewmodel.GameViewModel
 
 @Composable
-fun ImageSection(selectedGame: MyGame) {
+fun ImageSection(
+    selectedGame: MyGame,
+    viewModel: GameViewModel
+) {
+
+    val context = LocalContext.current
 
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -39,7 +46,11 @@ fun ImageSection(selectedGame: MyGame) {
             textPaddingStart = 0.dp,
             iconSize = 24.dp,
             iconTint = AppColors.textWhite,
-            boxBackground = AppColors.mRed
+            boxBackground = AppColors.mRed,
+            onClick = {
+                viewModel.insertGameToDb(selectedGame)
+                Toast.makeText(context, "Game added to favorites!", Toast.LENGTH_SHORT).show()
+            }
         )
     }
 

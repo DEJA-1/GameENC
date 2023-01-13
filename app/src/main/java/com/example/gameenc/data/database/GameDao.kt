@@ -1,17 +1,18 @@
-package com.example.gameenc.domain.repository
+package com.example.gameenc.data.database
 
-import com.example.gameenc.common.Resource
-import com.example.gameenc.data.remote.response.GameList
+import androidx.room.*
 import com.example.gameenc.domain.model.MyGame
 import kotlinx.coroutines.flow.Flow
 
-interface GameRepository {
+@Dao
+interface GameDao {
 
-    suspend fun getGames() : Resource<GameList>
-
+    @Query("SELECT * FROM game_table")
     fun getAllGamesFromDb(): Flow<List<MyGame>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertGameToDb(game: MyGame)
 
+    @Delete
     suspend fun deleteGameFromDb(game: MyGame)
 }

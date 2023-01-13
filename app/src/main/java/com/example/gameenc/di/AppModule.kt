@@ -1,7 +1,11 @@
 package com.example.gameenc.di
 
+import android.app.Application
+import androidx.room.Room
 import com.example.gameenc.common.Constants
 import com.example.gameenc.common.Constants.BASE_URL
+import com.example.gameenc.data.database.GameDao
+import com.example.gameenc.data.database.GameDatabase
 import com.example.gameenc.data.remote.GameApi
 import com.example.gameenc.data.repository.GameRepositoryImpl
 import com.example.gameenc.domain.repository.GameRepository
@@ -43,6 +47,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(api: GameApi) : GameRepository = GameRepositoryImpl(api)
+    fun provideGameRepository(api: GameApi, dao: GameDao) : GameRepository = GameRepositoryImpl(api, dao)
+
+    @Provides
+    @Singleton
+    fun provideGameDatabase(app: Application): GameDatabase {
+        return Room.databaseBuilder(
+            app,
+            GameDatabase::class.java,
+            GameDatabase.DATABASE_NAME
+        ).build()
+    }
 
 }

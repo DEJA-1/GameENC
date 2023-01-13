@@ -36,10 +36,10 @@ data class Game(
 
 fun Game.toMyGame(): MyGame {
     return MyGame(
-        background_image,
-        genres,
         id,
         name,
+        background_image,
+        genres,
         platforms.map { it.toMyPlatform() },
         playtime,
         rating,
