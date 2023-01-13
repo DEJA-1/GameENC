@@ -20,7 +20,6 @@ fun ImageSection(selectedGame: MyGame) {
         .fillMaxWidth()
         .height(250.dp)) {
 
-
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(selectedGame.background_image)

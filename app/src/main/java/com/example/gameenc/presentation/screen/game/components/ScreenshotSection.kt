@@ -23,9 +23,9 @@ fun ScreenshotSection(
         items(images) {
 
             Card(modifier = Modifier
-                .width(150.dp)
-                .height(100.dp)
-                .padding(top = 16.dp, start = 8.dp, end = 8.dp),
+                .width(200.dp)
+                .height(150.dp)
+                .padding(top = 16.dp, start = 8.dp, end = 8.dp, bottom = 16.dp),
                 elevation = 4.dp) {
 
                 AsyncImage(model = ImageRequest.Builder(LocalContext.current)

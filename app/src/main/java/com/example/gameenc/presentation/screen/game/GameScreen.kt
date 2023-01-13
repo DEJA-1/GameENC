@@ -13,6 +13,7 @@ import com.example.gameenc.presentation.screen.viewmodel.GameViewModel
 import com.example.gameenc.presentation.screen.game.components.ImageSection
 import com.example.gameenc.presentation.screen.game.components.info_section.InfoSection
 import com.example.gameenc.presentation.screen.game.components.ScreenshotSection
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
@@ -23,19 +24,20 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(AppColors.mBackground),
+            .background(AppColors.mMain),
     ) {
 
         Column(modifier = Modifier.padding(bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
             ImageSection(selectedGame = viewModel.selectedGame.value)
-
-            Divider(modifier = Modifier.fillMaxWidth(),
-                color = AppColors.mMain,
-                thickness = 2.dp)
-
             ScreenshotSection(images = images)
+
+            Divider(modifier = Modifier.fillMaxWidth()
+                .padding(bottom = 8.dp, start = 16.dp, end = 16.dp),
+                color = AppColors.mBackground,
+                thickness = 3.dp)
+
             InfoSection(selectedGame = viewModel.selectedGame.value)
 
         }

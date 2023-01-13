@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.GameENC" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/mMain</item>
+        <item name="android:statusBarColor">@color/mBackgroud</item>
     </style>
 </resources>
