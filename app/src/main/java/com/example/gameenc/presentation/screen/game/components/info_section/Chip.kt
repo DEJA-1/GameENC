@@ -26,31 +26,38 @@ import com.example.gameenc.domain.model.MyGame
 
 @Composable
 fun Chip(
+    modifier: Modifier = Modifier,
+    boxModifier: Modifier = Modifier,
     icon: ImageVector,
     text: String,
     fontSize: TextUnit = 16.sp,
-    imageSize: Dp = 24.dp
+    iconSize: Dp = 24.dp,
+    iconTint: Color = AppColors.mMain,
+    boxBackground: Color = AppColors.mBackground,
+    textPaddingStart: Dp = 6.dp,
+    contentPadding: Dp = 15.dp,
+    boxPadding: Dp = 4.dp,
+    onClick: () -> Unit = {}
 ) {
-    Box(modifier = Modifier
-        .padding(4.dp)
-        .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(12.dp))
+    Box(modifier = boxModifier
+        .padding(boxPadding)
         .clip(RoundedCornerShape(12.dp))
 
-        .background(AppColors.mBackground)
+        .background(boxBackground)
         .clickable {
-
+            onClick()
         }
-        .padding(15.dp)
+        .padding(contentPadding)
     ) {
 
         Row() {
-            Icon(modifier = Modifier.size(imageSize),
+            Icon(modifier = modifier.size(iconSize),
                 imageVector = icon,
                 contentDescription = "star image",
-                tint = AppColors.mMain
+                tint = iconTint
             )
             Text(
-                modifier = Modifier.padding(start = 6.dp),
+                modifier = modifier.padding(start = textPaddingStart),
                 text = text,
                 color = AppColors.textWhite,
                 fontWeight = FontWeight.ExtraBold,

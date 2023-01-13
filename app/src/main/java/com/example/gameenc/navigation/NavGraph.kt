@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.gameenc.presentation.screen.favorite.FavoriteScreen
 import com.example.gameenc.presentation.screen.viewmodel.GameViewModel
 import com.example.gameenc.presentation.screen.game.GameScreen
 import com.example.gameenc.presentation.screen.home.HomeScreen
@@ -23,6 +24,12 @@ fun SetupNavGraph(navController: NavHostController, viewModel: GameViewModel) {
             route = Screen.Game.route
         ) {
             GameScreen(navController = navController, viewModel = viewModel)
+        }
+        
+        composable(
+            route = Screen.Favorite.route
+        ) {
+            FavoriteScreen(navController = navController, viewModel = viewModel)
         }
 
     }
