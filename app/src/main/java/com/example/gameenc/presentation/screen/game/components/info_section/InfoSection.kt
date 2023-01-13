@@ -26,11 +26,10 @@ fun InfoSection(
         horizontalAlignment = CenterHorizontally
     ) {
 
-
         Chip(
             icon = Icons.Rounded.Edit,
             text = selectedGame.name,
-            fontSize = 32.sp,
+            fontSize = 26.sp,
             iconSize = 0.dp
         )
 

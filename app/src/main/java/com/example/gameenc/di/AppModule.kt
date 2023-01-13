@@ -47,7 +47,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(api: GameApi, dao: GameDao) : GameRepository = GameRepositoryImpl(api, dao)
+    fun provideGameRepository(api: GameApi, db: GameDatabase) : GameRepository = GameRepositoryImpl(api, db.gameDao)
 
     @Provides
     @Singleton
