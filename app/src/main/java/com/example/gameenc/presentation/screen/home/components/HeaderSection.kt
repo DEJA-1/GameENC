@@ -53,13 +53,5 @@ fun HeaderSection() {
                 }
             }
         )
-        Icon(
-            modifier = Modifier.size(24.dp)
-                .clickable {
-
-                },
-            imageVector = Icons.Rounded.Search, contentDescription = "Search icon",
-            tint = AppColors.mMain,
-        )
     }
 }
