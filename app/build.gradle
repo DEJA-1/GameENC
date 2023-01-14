@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.gameenc"
-        minSdk 21
+        minSdk 31
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -89,4 +89,7 @@ dependencies {
 
     //SystemUiController
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
+
+    //SplashScreen
+    implementation "androidx.core:core-splashscreen:1.0.0"
 }
