@@ -39,7 +39,8 @@ fun GameListSection(
 ) {
 
     Column(
-        horizontalAlignment = CenterHorizontally) {
+        horizontalAlignment = CenterHorizontally
+    ) {
 
         Text(
             modifier = Modifier.padding(bottom = 15.dp, top = 32.dp),
@@ -47,28 +48,42 @@ fun GameListSection(
             fontWeight = FontWeight.ExtraBold,
             fontStyle = FontStyle.Italic,
             fontSize = 28.sp,
-            color = AppColors.textWhite)
+            color = AppColors.textWhite
+        )
 
         LazyColumn() {
             items(games) {
-                Card(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(bottom = 8.dp)
-                    .clickable {
-                        selectedGame.value = it
-                        onClick()
-                    },
+                Card(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = 8.dp)
+                        .clickable {
+                            selectedGame.value = it
+                            onClick()
+                        },
                     shape = RoundedCornerShape(12.dp),
-                    elevation = 4.dp) {
+                    elevation = 4.dp
+                ) {
 
-                    Box(modifier = Modifier.clip(RoundedCornerShape(12.dp))) {
-                        AsyncImage(model = ImageRequest.Builder(LocalContext.current)
-                            .data(it.background_image)
-                            .crossfade(true)
-                            .build(),
-                            contentDescription = "Game Image")
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .border(
+                                width = 2.dp,
+                                color = AppColors.mMain,
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                    ) {
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(it.background_image)
+                                .crossfade(true)
+                                .build(),
+                            contentDescription = "Game Image"
+                        )
 
-                        Box(contentAlignment = Alignment.Center,
+                        Box(
+                            contentAlignment = Alignment.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(AppColors.mMain)
@@ -77,14 +92,16 @@ fun GameListSection(
 
 //                                .border(width = 2.dp, color = AppColors.mMain, shape = RoundedCornerShape(4.dp))
                                 .padding(15.dp)
-                                .align(Alignment.BottomStart)) {
+                                .align(Alignment.BottomStart)
+                        ) {
 
                             Text(
                                 text = it.name,
                                 fontWeight = FontWeight.ExtraBold,
                                 fontStyle = FontStyle.Italic,
                                 color = Color.Black,
-                                fontSize = 14.sp)
+                                fontSize = 14.sp
+                            )
 
                         }
                     }

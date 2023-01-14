@@ -29,7 +29,8 @@ fun ImageSection(
 
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(250.dp)) {
+        .height(250.dp),
+    contentAlignment = Alignment.BottomEnd) {
 
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -40,7 +41,7 @@ fun ImageSection(
             contentScale = ContentScale.FillBounds
         )
 
-        Chip(modifier = Modifier.align(Alignment.BottomEnd),
+        Chip(
             icon = Icons.Rounded.Favorite,
             text = "",
             textPaddingStart = 0.dp,
